@@ -1,0 +1,26 @@
+#HighLevel
+microservices-app/
+├── auth-service/        # Authentication service
+├── product-service/     # Product service
+├── frontend/            # React frontend
+└── docker-compose.yml   # For running all services together
+
+
+#Frontend
+frontend/
+├── public/
+│   └── index.html
+├── src/
+│   ├── components/
+│   │   ├── Login.js
+│   │   ├── Signup.js
+│   │   ├── Dashboard.js
+│   │   └── Products.js
+│   ├── App.js
+│   ├── App.css
+│   ├── index.js
+│   └── services/
+│       └── api.js
+├── package.json
+└── .env
+
