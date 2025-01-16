@@ -1,0 +1,43 @@
+version: "3.9"
+services:
+  auth-service:
+    build:
+      context: ./auth-service
+    ports:
+      - "5000:5000"
+    environment:
+      - JWT_SECRET=supersecret
+      - MONGO_URL=mongodb://mongo:27017/auth-service
+    depends_on:
+      - mongo
+
+  product-service:
+    build:
+      context: ./product-service
+    ports:
+      - "5001:5001"
+    environment:
+      - JWT_SECRET=supersecret
+      - MONGO_URL=mongodb://mongo:27017/product-service
+    depends_on:
+      - mongo
+
+  frontend:
+    build:
+      context: ./frontend
+    ports:
+      - "3000:3000"
+    depends_on:
+      - auth-service
+      - product-service
+
+  mongo:
+    image: mongo:5.0
+    container_name: mongo
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_data:/data/db
+
+volumes:
+  mongo_data:
